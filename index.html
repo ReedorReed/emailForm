@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" type="text/css" href="styles.css" />
+		<title>Document</title>
+	</head>
+	<body>
+		<div id="container">
+			<!-- Contact Form - sent to a Google Sheet -->
+			<form id="foo">
+				<p>
+					<label>Navn</label>
+					<input id="name" name="name" type="text" />
+				</p>
+				<p>
+					<label>E-mail</label>
+					<input id="email" name="email" type="email" />
+				</p>
+				<div id="success"></div>
+				<button type="submit">Send</button>
+			</form>
+		</div>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+		<!-- Custom Theme JavaScript -->
+		<script src="google-sheet.js"></script>
+	</body>
+</html>
