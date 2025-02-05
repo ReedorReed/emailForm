@@ -9,22 +9,21 @@
 	<body>
 		<div id="container">
 			<!-- Contact Form - sent to a Google Sheet -->
-			<form id="foo">
-				<p>
-					<label>Navn</label>
-					<input id="name" name="name" type="text" />
-				</p>
-				<p>
-					<label>E-mail</label>
-					<input id="email" name="email" type="email" />
-				</p>
-				<div id="success"></div>
-				<button type="submit">Send</button>
+			<form
+				method="post"
+				action=""
+				name="email-form">
+				<h4>Vil du vide mere skriv din email herunder</h4>
+				<input type="text" name="name" placeholder="Dit navn" />
+				<input
+					type="text"
+					name="email"
+					placeholder="Skriv din E-mail her"
+					required />
+				<input type="submit" value="Send" id="submit" />
 			</form>
 		</div>
 
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-		<!-- Custom Theme JavaScript -->
 		<script src="google-sheet.js"></script>
 	</body>
 </html>

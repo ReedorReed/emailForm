@@ -1,55 +1,14 @@
-// Variable to hold request
-var request;
+const scriptURL =
+	'https://script.google.com/macros/s/AKfycbzuB9KkgRiF--onOqHl2qM9K9LKpK6H6tNdTDbAiTSXtschJL-XzqvJMKRvrdKkFXXveA/exec';
 
-// Bind to the submit event of our form
-$('#foo').submit(function (event) {
-	// Abort any pending request
-	if (request) {
-		request.abort();
-	}
-	// setup some local variables
-	var $form = $(this);
+const form = document.forms['email-form'];
 
-	// Let's select and cache all the fields
-	var $inputs = $form.find('input, select, button, textarea');
-
-	// Serialize the data in the form
-	var serializedData = $form.serialize();
-
-	// Let's disable the inputs for the duration of the Ajax request.
-	// Note: we disable elements AFTER the form data has been serialized.
-	// Disabled form elements will not be serialized.
-	$inputs.prop('disabled', true);
-
-	// Fire off the request to /form.php
-	request = $.ajax({
-		url: 'https://script.google.com/macros/s/AKfycbxCQ5or3Nq9angCDfGoALukdc1DqFque4xiGp6dbz8YnXq9kUMFc9zzXM6ntmFx56W8/exec',
-		type: 'post',
-		data: serializedData
-	});
-
-	// Callback handler that will be called on success
-	request.done(function (response, textStatus, jqXHR) {
-		// Log a message to the console
-		console.log('Hooray, it worked!');
-		console.log(response);
-		console.log(textStatus);
-		console.log(jqXHR);
-	});
-
-	// Callback handler that will be called on failure
-	request.fail(function (jqXHR, textStatus, errorThrown) {
-		// Log the error to the console
-		console.error('The following error occurred: ' + textStatus, errorThrown);
-	});
-
-	// Callback handler that will be called regardless
-	// if the request failed or succeeded
-	request.always(function () {
-		// Reenable the inputs
-		$inputs.prop('disabled', false);
-	});
-
-	// Prevent default posting of form
-	event.preventDefault();
+form.addEventListener('submit', (e) => {
+	e.preventDefault();
+	fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+		.then((response) => alert('Mange tak! Din E-mail er registreret'))
+		.then(() => {
+			window.location.reload();
+		})
+		.catch((error) => console.error('Error!', error.message));
 });
